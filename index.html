@@ -1,0 +1,162 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Smart Product Comparison System</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <!-- Navigation Bar -->
+
+    <header class="navbar">
+
+        <div class="logo">
+            SmartCompare<span>.</span>
+        </div>
+
+        <nav>
+            <a href="/">Home</a>
+            <a href="#compare">Compare Products</a>
+            <a href="#search">Reviews</a>
+        </nav>
+
+    </header>
+
+
+    <!-- Hero Section -->
+
+    <section class="hero">
+
+        <p class="small-title">
+            SMART PRODUCT COMPARISON
+        </p>
+
+        <h1>
+            Compare Products.
+            <br>
+            <span>Choose Smarter.</span>
+        </h1>
+
+        <p>
+            Compare prices, ratings and customer reviews
+            from different online stores.
+        </p>
+
+    </section>
+
+
+    <main class="container">
+
+
+        <!-- Product URL Comparison -->
+
+        <section class="card" id="compare">
+
+            <h2>Product Link Comparison</h2>
+
+            <p>
+                Paste up to five product links below.
+                Enter one link per line.
+            </p>
+
+            <textarea
+                id="urls"
+                rows="5"
+                placeholder="Paste first product URL here...
+Paste second product URL here...
+Paste third product URL here...">
+            </textarea>
+
+            <button id="compareBtn">
+                Compare Products →
+            </button>
+
+            <p id="status"></p>
+
+        </section>
+
+
+        <!-- Product Name Search -->
+
+        <section class="card" id="search">
+
+            <h2>Search Product Reviews</h2>
+
+            <p>
+                Enter a product name to find shopping
+                and customer review pages.
+            </p>
+
+            <div class="search-box">
+
+                <input
+                    type="text"
+                    id="productName"
+                    placeholder="Enter product name...">
+
+                <button id="searchBtn">
+                    Search
+                </button>
+
+            </div>
+
+            <div id="searchLinks"></div>
+
+        </section>
+
+
+        <!-- Comparison Results -->
+
+        <section id="resultsSection" hidden>
+
+            <h2>Comparison Results</h2>
+
+            <div id="highlights"></div>
+
+            <div
+                id="results"
+                class="results-grid">
+            </div>
+
+            <div id="errors"></div>
+
+        </section>
+
+    </main>
+
+
+    <!-- Footer -->
+
+    <footer>
+
+        <h3>SmartCompare.</h3>
+
+        <p>
+            Smart Product Price & Review Comparison System
+        </p>
+
+        <p>
+            © 2026 All Rights Reserved
+        </p>
+
+    </footer>
+
+
+    <!-- JavaScript -->
+
+    <script src="{{ url_for('static', filename='app.js') }}">
+    </script>
+
+</body>
+
+</html>

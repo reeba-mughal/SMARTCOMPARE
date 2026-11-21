@@ -1,162 +1,112 @@
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-
-    <title>Smart Product Comparison System</title>
-
-    <link rel="stylesheet"
-          href="{{ url_for('static', filename='style.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Product Comparison System - Deep Learning Powered</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
-
 <body>
-
-    <!-- Navigation Bar -->
-
     <header class="navbar">
-
-        <div class="logo">
-            SmartCompare<span>.</span>
-        </div>
-
+        <div class="logo">SmartCompare<span>.</span></div>
         <nav>
             <a href="/">Home</a>
             <a href="#compare">Compare Products</a>
             <a href="#search">Reviews</a>
         </nav>
-
     </header>
 
-
-    <!-- Hero Section -->
-
     <section class="hero">
-
-        <p class="small-title">
-            SMART PRODUCT COMPARISON
-        </p>
-
-        <h1>
-            Compare Products.
-            <br>
-            <span>Choose Smarter.</span>
-        </h1>
-
-        <p>
-            Compare prices, ratings and customer reviews
-            from different online stores.
-        </p>
-
+        <p class="small-title">SMART PRODUCT COMPARISON • DEEP LEARNING POWERED 🤖</p>
+        <h1>Compare Products.<br><span>Choose Smarter.</span></h1>
+        <p>Compare prices, ratings and customer reviews from different online stores. Our Deep Learning Neural Network (3 Inputs → 4 Neurons → 3 Neurons → 1 Output) analyses Price, Rating & Reviews to pick the Best Value product for you.</p>
+        <p style="background:#eef2ff;padding:10px 14px;border-radius:10px;display:inline-block;margin-top:10px;font-size:14px;"><b>🧠 Deep Learning Model:</b> Price + Rating + Reviews → Neural Network → Best Value Score (0-100)</p>
     </section>
 
-
     <main class="container">
-
-
-        <!-- Product URL Comparison -->
-
         <section class="card" id="compare">
-
             <h2>Product Link Comparison</h2>
+            <p>Dono links alag alag paste karo, phir compare karo.</p>
 
-            <p>
-                Paste up to five product links below.
-                Enter one link per line.
-            </p>
+            <div style="display:flex; gap:16px; flex-wrap:wrap; margin-top:12px;">
 
-            <textarea
-                id="urls"
-                rows="5"
-                placeholder="Paste first product URL here...
-Paste second product URL here...
-Paste third product URL here...">
-            </textarea>
+                <!-- LINK 1 - ALAG SECTION -->
+                <div style="flex:1; min-width:260px; background:#f8fafc; border:2px solid #e2e8f0; border-radius:14px; padding:16px;">
+                    <h3 style="margin:0 0 4px;">🔗 Product 1</h3>
+                    <p style="font-size:13px; color:#64748b; margin:0 0 10px;">Pehla link yahan paste karo</p>
+                    <input type="text" id="link1" placeholder="Paste Link 1 here..." style="width:100%; padding:12px; border-radius:10px; border:1px solid #ddd; box-sizing:border-box;">
+                    <p id="label1" style="font-size:13px; color:#16a34a; margin:8px 0 0; display:none;">✅ Link 1 added</p>
+                    <button onclick="removeLink(1)" style="margin-top:8px; padding:6px 12px; border-radius:8px; border:1px solid #fecaca; background:#fef2f2; color:#dc2626; cursor:pointer; font-size:13px;">🗑️ Remove Link 1</button>
+                </div>
 
-            <button id="compareBtn">
-                Compare Products →
-            </button>
+                <!-- LINK 2 - ALAG SECTION -->
+                <div style="flex:1; min-width:260px; background:#f8fafc; border:2px solid #e2e8f0; border-radius:14px; padding:16px;">
+                    <h3 style="margin:0 0 4px;">🔗 Product 2</h3>
+                    <p style="font-size:13px; color:#64748b; margin:0 0 10px;">Dusra link yahan paste karo</p>
+                    <input type="text" id="link2" placeholder="Paste Link 2 here..." style="width:100%; padding:12px; border-radius:10px; border:1px solid #ddd; box-sizing:border-box;">
+                    <p id="label2" style="font-size:13px; color:#16a34a; margin:8px 0 0; display:none;">✅ Link 2 added</p>
+                    <button onclick="removeLink(2)" style="margin-top:8px; padding:6px 12px; border-radius:8px; border:1px solid #fecaca; background:#fef2f2; color:#dc2626; cursor:pointer; font-size:13px;">🗑️ Remove Link 2</button>
+                </div>
 
+            </div>
+
+            <!-- Hidden textarea for old app.js -->
+            <textarea id="urls" rows="2" hidden></textarea>
+
+            <button id="compareBtn" style="margin-top:16px;">Compare Products →</button>
             <p id="status"></p>
-
         </section>
-
-
-        <!-- Product Name Search -->
 
         <section class="card" id="search">
-
             <h2>Search Product Reviews</h2>
-
-            <p>
-                Enter a product name to find shopping
-                and customer review pages.
-            </p>
-
+            <p>Enter a product name to find shopping and customer review pages.</p>
             <div class="search-box">
-
-                <input
-                    type="text"
-                    id="productName"
-                    placeholder="Enter product name...">
-
-                <button id="searchBtn">
-                    Search
-                </button>
-
+                <input type="text" id="productName" placeholder="Enter product name...">
+                <button id="searchBtn">Search</button>
             </div>
-
             <div id="searchLinks"></div>
-
         </section>
-
-
-        <!-- Comparison Results -->
 
         <section id="resultsSection" hidden>
-
             <h2>Comparison Results</h2>
-
             <div id="highlights"></div>
-
-            <div
-                id="results"
-                class="results-grid">
+            <div id="dlInfo" style="background:#f0fdf4;border:1px solid #bbf7d0;padding:12px 14px;border-radius:10px;margin:12px 0;display:none;">
+                <b>🤖 Deep Learning Recommendation</b>
+                <p id="dlText" style="margin:6px 0 0;">Our Neural Network has analysed all products.</p>
             </div>
-
+            <div id="results" class="results-grid"></div>
             <div id="errors"></div>
-
         </section>
-
     </main>
 
-
-    <!-- Footer -->
-
     <footer>
-
         <h3>SmartCompare.</h3>
-
-        <p>
-            Smart Product Price & Review Comparison System
-        </p>
-
-        <p>
-            © 2026 All Rights Reserved
-        </p>
-
+        <p>Smart Product Price & Review Comparison System | Powered by Deep Learning Neural Network</p>
+        <p>© 2026 All Rights Reserved</p>
     </footer>
 
-
-    <!-- JavaScript -->
-
-    <script src="{{ url_for('static', filename='app.js') }}">
+    <script>
+    // Dono alag boxes ko purane system se jorne ke liye
+    function syncLinks(){
+        let l1 = document.getElementById('link1').value.trim();
+        let l2 = document.getElementById('link2').value.trim();
+        let all = [l1, l2].filter(x => x !== '').join('\n');
+        document.getElementById('urls').value = all;
+        document.getElementById('label1').style.display = l1 ? 'block' : 'none';
+        document.getElementById('label2').style.display = l2 ? 'block' : 'none';
+    }
+    function removeLink(num){
+        if(num === 1){
+            document.getElementById('link1').value = '';
+        } else {
+            document.getElementById('link2').value = '';
+        }
+        syncLinks();
+    }
+    document.getElementById('link1').addEventListener('input', syncLinks);
+    document.getElementById('link2').addEventListener('input', syncLinks);
+    document.getElementById('compareBtn').addEventListener('click', syncLinks);
     </script>
-
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
 </body>
-
 </html>
